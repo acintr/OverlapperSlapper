@@ -34,33 +34,6 @@ def rec_child(parent):
             temp_u.append(kid.author)
         rec_child(kid.replies)
 
-
-def merge_sort(arr):
-    if len(arr) > 1:
-        m = int(len(arr) / 2)
-        l = arr[:m]
-        r = arr[m:]
-        merge_sort(l)
-        merge_sort(r)
-        i = j = k = 0
-        while i < len(l) and j < len(r):
-            if l[i][1] > r[j][1]:
-                arr[k] = l[i]
-                i += 1
-            else:
-                arr[k] = r[j]
-                j += 1
-            k += 1
-        while i < len(l):
-            arr[k] = l[i]
-            i += 1
-            k += 1
-        while j < len(r):
-            arr[k] = r[j]
-            j += 1
-            k += 1
-
-
 reddit = praw.Reddit(
     user_agent=config['user_agent'],
     client_id=config['client_id'],
@@ -93,7 +66,7 @@ user_list = []
 for u in users:
     user_list.append((u.name, users[u]))
 
-merge_sort(user_list)
+sorted(user_list, key=lambda u:(-u[1], u[0]))
 
 # for u in user_list:
 #     print(u[1], u[0])
