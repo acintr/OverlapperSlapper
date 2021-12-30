@@ -66,7 +66,7 @@ user_list = []
 for u in users:
     user_list.append((u.name, users[u]))
 
-sorted(user_list, key=lambda u:(-u[1], u[0]))
+user_list = sorted(user_list, key=lambda u:(-u[1], u[0]))
 
 # for u in user_list:
 #     print(u[1], u[0])
